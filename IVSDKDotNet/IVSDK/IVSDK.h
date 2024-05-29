@@ -14,6 +14,7 @@ namespace plugin
 		VERSION_NONE,
 		VERSION_1070,
 		VERSION_1080,
+		VERSION_CE // Complete edition, only 1.2.0.43
 	};
 	static eGameVersion gameVer = VERSION_NONE;
 	void gameStartupEvent();
