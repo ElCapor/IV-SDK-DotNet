@@ -428,5 +428,11 @@
     <ClInclude Include="extern\pattern\pattern.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ce\patterns.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ce\readme.txt" />
   </ItemGroup>
 </Project>

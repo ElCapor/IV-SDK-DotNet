@@ -1,3 +1,4 @@
+#pragma unmanaged
 #include "eyestep_utility.h"
 #include <fstream>
 

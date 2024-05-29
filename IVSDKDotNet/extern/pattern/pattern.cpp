@@ -20,12 +20,12 @@
 #if PATTERNS_USE_HINTS
 
 // from boost someplace
-template <std::uint64_t FnvPrime, std::uint64_t OffsetBasis>
+template <uint64_t FnvPrime, uint64_t OffsetBasis>
 struct basic_fnv_1
 {
-	std::uint64_t operator()(std::string_view text) const
+	uint64_t operator()(std::string_view text) const
 	{
-		std::uint64_t hash = OffsetBasis;
+		uint64_t hash = OffsetBasis;
 		for (auto it : text)
 		{
 			hash *= FnvPrime;
@@ -36,8 +36,8 @@ struct basic_fnv_1
 	}
 };
 
-static constexpr std::uint64_t fnv_prime = 1099511628211u;
-static constexpr std::uint64_t fnv_offset_basis = 14695981039346656037u;
+static constexpr uint64_t fnv_prime = 1099511628211u;
+static constexpr uint64_t fnv_offset_basis = 14695981039346656037u;
 
 typedef basic_fnv_1<fnv_prime, fnv_offset_basis> fnv_1;
 

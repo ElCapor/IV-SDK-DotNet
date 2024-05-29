@@ -49,7 +49,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <TargetExt>.asi</TargetExt>
-    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath);$(ProjectDir)extern</IncludePath>
+    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath);$(ProjectDir)extern;$(ProjectDir)ce</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
     <ManagedAssembly>true</ManagedAssembly>
   </PropertyGroup>
@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdvancedPatcher.h" />
+    <ClInclude Include="ce\patterns.hpp" />
     <ClInclude Include="extern\eyestep\eyestep.h" />
     <ClInclude Include="extern\eyestep\eyestep_utility.h" />
     <ClInclude Include="extern\pattern\pattern.hpp" />
@@ -236,6 +237,9 @@
     <ClInclude Include="IVSDK\phInstGta.h" />
     <ClInclude Include="IVSDK\rage.h" />
     <ClInclude Include="IVSDK\SkyDome.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ce\readme.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
