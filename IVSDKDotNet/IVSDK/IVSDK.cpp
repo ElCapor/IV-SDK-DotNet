@@ -17,6 +17,7 @@
 #include <list>
 #include <d3dx9.h>
 #include "injector/injector.hpp"
+#include "patterns.hpp"
 
 #include "Addresses.h"
 #include "IVSDK.h"
@@ -105,7 +106,6 @@ namespace plugin
 		return 0;
 	}
 #pragma endregion
-#include "patterns.hpp"
 #pragma region Methods
 	void InitHooks()
 	{
