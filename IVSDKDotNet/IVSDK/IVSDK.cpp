@@ -123,15 +123,15 @@ namespace plugin
 		auto processHookEvent = findpattern<uint32_t>("process hook", patterns::events::hard::GetProcessHookAddres);
 
 		/* Regular */
-		processScriptsEvent::returnAddress = DoHook(AddressSetter::Get(0x21601, 0x95141), processScriptsEvent::MainHook);
-		gameLoadEvent::returnAddress = DoHook(AddressSetter::Get(0x4ADB38, 0x770748), gameLoadEvent::MainHook);
-		gameLoadPriorityEvent::returnAddress = DoHook(AddressSetter::Get(0x4ADA9D, 0x7706AD), gameLoadPriorityEvent::MainHook);
-		drawingEvent::returnAddress = DoHook(AddressSetter::Get(0x46AFA8, 0x60E1C8), drawingEvent::MainHook);
-		processAutomobileEvent::callAddress = DoHook(AddressSetter::Get(0x7FE9C6, 0x652C26), processAutomobileEvent::MainHook);
-		processPadEvent::callAddress = DoHook(AddressSetter::Get(0x3C4002, 0x46A802), processPadEvent::MainHook);
-		processCameraEvent::returnAddress = DoHook(AddressSetter::Get(0x52C4C2, 0x694232), processCameraEvent::MainHook);
-		mountDeviceEvent::returnAddress = DoHook(AddressSetter::Get(0x3B2E27, 0x456C27), mountDeviceEvent::MainHook);
-		ingameStartupEvent::returnAddress = DoHook(AddressSetter::Get(0x20379, 0x93F09), ingameStartupEvent::MainHook);
+		processScriptsEvent::returnAddress = DoHook(AddressSetter::Get(0x21601, 0x95141, processHookEvent, false), processScriptsEvent::MainHook);
+		gameLoadEvent::returnAddress = DoHook(AddressSetter::Get(0x4ADB38, 0x770748, loadEvent, false), gameLoadEvent::MainHook);
+		gameLoadPriorityEvent::returnAddress = DoHook(AddressSetter::Get(0x4ADA9D, 0x7706AD, loadEventPriority, false), gameLoadPriorityEvent::MainHook);
+		drawingEvent::returnAddress = DoHook(AddressSetter::Get(0x46AFA8, 0x60E1C8, drawing, false), drawingEvent::MainHook);
+		processAutomobileEvent::callAddress = DoHook(AddressSetter::Get(0x7FE9C6, 0x652C26, atm, false), processAutomobileEvent::MainHook);
+		processPadEvent::callAddress = DoHook(AddressSetter::Get(0x3C4002, 0x46A802, pad, false), processPadEvent::MainHook);
+		processCameraEvent::returnAddress = DoHook(AddressSetter::Get(0x52C4C2, 0x694232, camera, false), processCameraEvent::MainHook);
+		mountDeviceEvent::returnAddress = DoHook(AddressSetter::Get(0x3B2E27, 0x456C27, mountDeviceEvent, false), mountDeviceEvent::MainHook);
+		ingameStartupEvent::returnAddress = DoHook(AddressSetter::Get(0x20379, 0x93F09, inGameStartup, false), ingameStartupEvent::MainHook);
 	}
 	void InitWrapper()
 	{
@@ -169,6 +169,12 @@ namespace plugin
 				InitHooks();
 				//gameStartupEvent();
 				InitWrapper();
+				break;
+			case plugin::VERSION_CE:
+			{
+				InitHooks();
+				InitWrapper();
+			}
 				break;
 		}
 

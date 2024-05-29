@@ -74,7 +74,7 @@ namespace AddressSetter
 	// Note that the base address is added here and 0x400000 is not subtracted, so rebase your .idb to 0x0 or subtract it yourself
 	template<typename T>
 	// ElCapor - I temporarily added an optional addrCE argument to test CE without having to make this change breaking
-	static inline T& GetRef(uint32_t addr1070, uint32_t addr1080, uint32_t addrCE = 0)
+	static inline T& GetRef(uint32_t addr1070, uint32_t addr1080, uint32_t addrCE = 0, bool useBaseAddress = true)
 	{
 		if (!bAddressesRead)
 			Init();
@@ -83,14 +83,14 @@ namespace AddressSetter
 		{
 		case plugin::VERSION_1080: return *reinterpret_cast<T*>(gBaseAddress + addr1080); break;
 		case plugin::VERSION_1070: return *reinterpret_cast<T*>(gBaseAddress + addr1070); break;
-		case plugin::VERSION_CE: return *reinterpret_cast<T*>(gBaseAddress + addrCE); break;
+		case plugin::VERSION_CE: return *reinterpret_cast<T*>(useBaseAddress ? gBaseAddress : 0 + addrCE); break;
 		}
 
 		return *reinterpret_cast<T*>(nullptr);
 	}
 
 	// addreCe added here too
-	static inline uint32_t Get(uint32_t addr1070, uint32_t addr1080, uint32_t addrCE = 0)
+	static inline uint32_t Get(uint32_t addr1070, uint32_t addr1080, uint32_t addrCE = 0, bool useBaseAddress = true)
 	{
 		if (!bAddressesRead)
 			Init();
@@ -99,7 +99,7 @@ namespace AddressSetter
 		{
 		case plugin::VERSION_1080: return gBaseAddress + addr1080; break;
 		case plugin::VERSION_1070: return gBaseAddress + addr1070; break;
-		case plugin::VERSION_CE: return gBaseAddress + addrCE; break;
+		case plugin::VERSION_CE: return useBaseAddress ? gBaseAddress : 0 + addrCE; break;
 		}
 
 		return 0;

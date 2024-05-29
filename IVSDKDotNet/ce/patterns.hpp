@@ -1,5 +1,6 @@
 #pragma unmanaged
-
+#ifndef PATTERNS_HPP
+#define PATTERNS_HPP
 #include <cstdint>
 #include <pattern/pattern.hpp>
 #include <eyestep/eyestep.h>
@@ -160,3 +161,5 @@ T findpattern(const char* name, std::function<void* ()> fn)
 {
     return findpattern<T>(name, [fn]() -> uint32_t {return reinterpret_cast<uint32_t>(fn()); });
 }
+
+#endif
