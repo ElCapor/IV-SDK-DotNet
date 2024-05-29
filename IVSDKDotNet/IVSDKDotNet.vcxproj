@@ -49,14 +49,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <TargetExt>.asi</TargetExt>
-    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath);$(ProjectDir)extern</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
     <ManagedAssembly>true</ManagedAssembly>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.asi</TargetExt>
-    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath);$(ProjectDir)extern</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -97,6 +97,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="extern\eyestep\eyestep.cpp" />
+    <ClCompile Include="extern\eyestep\eyestep_utility.cpp" />
+    <ClCompile Include="extern\pattern\pattern.cpp" />
     <ClCompile Include="IVSDK\IVSDK.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdvancedPatcher.h" />
+    <ClInclude Include="extern\eyestep\eyestep.h" />
+    <ClInclude Include="extern\eyestep\eyestep_utility.h" />
+    <ClInclude Include="extern\pattern\pattern.hpp" />
     <ClInclude Include="IVSDK\Addresses.h" />
     <ClInclude Include="IVSDK\audEngine.h" />
     <ClInclude Include="IVSDK\audRadioAudioEntity.h" />

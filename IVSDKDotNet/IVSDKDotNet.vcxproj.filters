@@ -25,10 +25,22 @@
     <Filter Include="Header Files\IVSDK\injector\gvm">
       <UniqueIdentifier>{915a90e4-d30e-4c36-98fe-3477522a5629}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\CE">
+      <UniqueIdentifier>{bc6f3944-8173-42d4-ae3c-3f1d3ece4bb5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IVSDK\IVSDK.cpp">
       <Filter>Source Files\IVSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="extern\eyestep\eyestep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="extern\eyestep\eyestep_utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="extern\pattern\pattern.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -405,6 +417,15 @@
       <Filter>Header Files\IVSDK\injector\gvm</Filter>
     </ClInclude>
     <ClInclude Include="AdvancedPatcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\eyestep\eyestep.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\eyestep\eyestep_utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="extern\pattern\pattern.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
