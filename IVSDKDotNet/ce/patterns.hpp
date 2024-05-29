@@ -127,12 +127,29 @@ void StartEyestep()
     EyeStep::open(GetCurrentProcess());
 }
 
+void DebugLog(const char* format, ...)
+{
+    const int bufferSize = 1024;
+    char buffer[bufferSize];
+
+    va_list args;
+    va_start(args, format);
+
+    vsnprintf(buffer, bufferSize, format, args);
+
+    va_end(args);
+
+    OutputDebugStringA(buffer);
+}
+
 
 template <typename T>
 T findpattern(const char* name, std::function<uint32_t()> fn)
 {
     //Console::log("[PATTERN] Looking up ", name, "...");
+    DebugLog("[PATTERN] Looking up %s\n", name);
     uint32_t result = fn();
+    DebugLog("[PATTERN] Result %p", result);
     //Console::log("[PATTERN] RESULT : ", std::hex, result);
     return static_cast<T>(result);
 
