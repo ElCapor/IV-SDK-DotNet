@@ -9,4 +9,9 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>C:\Program Files (x86)\DODI-Repacks\Grand Theft Auto IV</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerCommand>C:\Program Files %28x86%29\DODI-Repacks\Grand Theft Auto IV\GTAIV.exe</LocalDebuggerCommand>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommandArguments>-width 800 -height 600 -fullscreen false -windowed true</LocalDebuggerCommandArguments>
+  </PropertyGroup>
 </Project>

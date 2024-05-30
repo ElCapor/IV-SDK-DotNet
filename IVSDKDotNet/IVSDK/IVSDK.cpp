@@ -112,15 +112,16 @@ namespace plugin
 		/*
 		Complete Edition
 		*/
+		StartEyestep();
 		auto atm = findpattern<uint32_t>("processAutomobileEvent", []() -> void* {return patterns::events::automobile.find(9); });
 		auto pad = findpattern<uint32_t>("processAutomobileEvent", []() -> void* {return patterns::events::pad.find(2); });
 		auto camera = findpattern<uint32_t>("camera event", []() -> void* {return patterns::events::camera.find(2); });
 		auto drawing = findpattern<uint32_t>("drawing event", []() -> void* {return patterns::events::drawing.find(8); });
-		auto loadEventPriority = findpattern<uint32_t>("event priority", patterns::events::hard::GetPopulationConfigCall);
 		auto inGameStartup = findpattern<uint32_t>("in game startup", []() -> void* {return patterns::events::inGameStartup.find(17); });
 		auto mountDeviceEvent = findpattern<uint32_t>("mount device event", patterns::events::hard::GetMountDeviceCall);
 		auto loadEvent = findpattern<uint32_t>("event priority", patterns::events::hard::GetLoadEventCall);
 		auto processHookEvent = findpattern<uint32_t>("process hook", patterns::events::hard::GetProcessHookAddres);
+		auto loadEventPriority = findpattern<uint32_t>("event priority", patterns::events::hard::GetPopulationConfigCall);
 
 		/* Regular */
 		processScriptsEvent::returnAddress = DoHook(AddressSetter::Get(0x21601, 0x95141, processHookEvent, false), processScriptsEvent::MainHook);
@@ -172,6 +173,7 @@ namespace plugin
 				break;
 			case plugin::VERSION_CE:
 			{
+				DebugLog("CE START\n");
 				InitHooks();
 				InitWrapper();
 			}
