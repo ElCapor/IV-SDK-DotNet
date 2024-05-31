@@ -6,6 +6,22 @@
 #include <eyestep/eyestep.h>
 #include <eyestep/eyestep_utility.h>
 #include <functional>
+
+void DebugLog(const char* format, ...)
+{
+    const int bufferSize = 1024;
+    char buffer[bufferSize];
+
+    va_list args;
+    va_start(args, format);
+
+    vsnprintf(buffer, bufferSize, format, args);
+
+    va_end(args);
+
+    OutputDebugStringA(buffer);
+}
+
 #define PATTERN PatternHolder
 
 // pattern holder
@@ -121,28 +137,45 @@ namespace patterns
             return ret;
         }
     }
+    namespace rage {
+        PATTERN p_D3DDEVICE = "A1 ? ? ? ? 50 8B 08 FF 51 40";
+        std::uint32_t get_d3d_device()
+        {
+            
+            return (std::uint32_t)p_D3DDEVICE.find(1);
+        }
+        namespace rage_scr_thread
+        {
+            //! WARNING WARNING WARNING PLEASE GET RID OF THIS SHITTY CODE PLS ONG I SWEAR THIS WILL BLOW UP SOMEONES PC SOME DAY !
+            std::uint32_t get_running_thread()
+            {
+                auto ptr = EyeStep::scanner::scan_xrefs("ERROR!!! Unknown script name ERROR!!!")[0];
+                bool done = false;
+                while (!done) // a bit hacky but i got no choice ong
+                {
+                    ptr--;
+                    if (ptr % 16 == 0)
+                    {
+                        if (EyeStep::util::readByte(ptr) == 0x56 && EyeStep::util::readByte(ptr + 1) == 0x8B)
+                            done = true;
+                    }
+                }
+                auto xref_result = EyeStep::scanner::scan_xrefs(ptr);
+                auto get_name_of_current_script = xref_result[0]; // jmp getscriptname
+                auto relative_call = get_name_of_current_script - 7;
+                auto resolve_call = EyeStep::util::getRel(relative_call); // resolve the relative call
+                auto m_p_current_thread = EyeStep::util::readInt(resolve_call + 1);
+
+                return m_p_current_thread;
+            }
+        }
+    }
 }
 
 void StartEyestep()
 {
     EyeStep::open(GetCurrentProcess());
 }
-
-void DebugLog(const char* format, ...)
-{
-    const int bufferSize = 1024;
-    char buffer[bufferSize];
-
-    va_list args;
-    va_start(args, format);
-
-    vsnprintf(buffer, bufferSize, format, args);
-
-    va_end(args);
-
-    OutputDebugStringA(buffer);
-}
-
 
 template <typename T>
 T findpattern(const char* name, std::function<uint32_t()> fn)

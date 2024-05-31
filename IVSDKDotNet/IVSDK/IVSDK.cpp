@@ -112,6 +112,10 @@ namespace plugin
 		/*
 		Complete Edition
 		*/
+		AllocConsole();
+		FILE* fs;
+		freopen_s(&fs, "CONOUT$", "w", stdout);
+		freopen_s(&fs, "CONIN$", "r", stdin);
 		StartEyestep();
 		auto atm = findpattern<uint32_t>("processAutomobileEvent", []() -> void* {return patterns::events::automobile.find(9); });
 		auto pad = findpattern<uint32_t>("processAutomobileEvent", []() -> void* {return patterns::events::pad.find(2); });
@@ -122,6 +126,8 @@ namespace plugin
 		auto loadEvent = findpattern<uint32_t>("event priority", patterns::events::hard::GetLoadEventCall);
 		auto processHookEvent = findpattern<uint32_t>("process hook", patterns::events::hard::GetProcessHookAddres);
 		auto loadEventPriority = findpattern<uint32_t>("event priority", patterns::events::hard::GetPopulationConfigCall);
+		//CTheScripts::m_pCurrentThread = findpattern<uint32_t>("current thread", patterns::rage::rage_scr_thread::get_running_thread);
+		rage::g_pDirect3DDevice = (IDirect3DDevice9*)findpattern<std::uint32_t>("d3d", patterns::rage::get_d3d_device);
 
 		/* Regular */
 		processScriptsEvent::returnAddress = DoHook(AddressSetter::Get(0x21601, 0x95141, processHookEvent, false), processScriptsEvent::MainHook);

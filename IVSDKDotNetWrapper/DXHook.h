@@ -75,7 +75,7 @@ public:
 
 		if (!device)
 			return false;
-
+		printf("D3D DEVICE %p", device);
 		memcpy(vtable, *reinterpret_cast<void***>(device), 119 * 4);
 
 		return true;
